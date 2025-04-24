@@ -6,7 +6,7 @@ app.use(express.json());
 
 app.use('/auth', authRoutes);
 
-app.get('/hello', (req, res) => {
+app.get('/', (req, res) => {
   res.send('Hello, world!');
 });
 

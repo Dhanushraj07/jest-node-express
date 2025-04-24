@@ -1,10 +1,10 @@
 const request = require('supertest');
 const app = require('../app'); // Adjust the path to your app.js file
 
-describe('GET /hello', () => {
+describe('GET /', () => {
   it('should return Hello, world!', async () => {
     const res = await request(app)
-    .get('/hello');
+    .get('/');
     expect(res.statusCode).toBe(200);
     expect(res.text).toBe('Hello, world!');
   });
