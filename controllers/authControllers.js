@@ -1,14 +1,18 @@
 
 const signup = (req, res) => {
     try {
-        const { username, password } = req.body;
+        const { email,username, password } = req.body;
 
-        if (!username || !password) {
-            return res.status(400).send('Username and password are required');
+        if (!email || !username || !password) {
+            return res.status(400).send('All fields are required: email, username, and password');
         }
 
         // Password validation
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).send('Email should be a valid email address');
+        }
 
         if (!passwordRegex.test(password)) {
             return res.status(400).send(
@@ -48,7 +52,16 @@ const login = (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 }
-//
+
+const logout = (req, res) => {
+    try {
+        // Simulate logout process
+        res.status(200).json({ message: 'Logout successful' });
+    } catch (error) {
+        console.error('Error during logout:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
 
 module.exports = { signup ,login};
 
